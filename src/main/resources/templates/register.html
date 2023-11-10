@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en xmlns=" https://www.thymeleaf.org"">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,30 +10,30 @@
 <body>
 <div class="container">
 <h1 style="color: red;">User Registration Form</h1>
-    <form class="col-5">
+    <form class="col-5" th:action="@{/registerUser}" th:object="${user}" method="post">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><b>Name</b></label>
-            <input type="text" class="form-control" placeholder="Enter name">
+            <input type="text" th:field="*{name}" class="form-control" placeholder="Enter name">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><b>Username</b></label>
-            <input type="text" class="form-control" placeholder="Enter username">
+            <input type="text" th:field="*{username}" class="form-control" placeholder="Enter username">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><b>Email</b></label>
-            <input type="email" class="form-control" placeholder="Enter email">
+            <input type="email" th:field="*{email}" class="form-control" placeholder="Enter email">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><b>Phone</b></label>
-            <input type="text" class="form-control" placeholder="Enter phone number">
+            <input type="text" th:field="*{phone}" class="form-control" placeholder="Enter phone number">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><b>Password</b></label>
-            <input type="password" class="form-control" placeholder="Enter password">
+            <input type="password" th:field="*{password}" class="form-control" placeholder="Enter password">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><b>Password</b></label>
-            <input type="password" class="form-control" placeholder="Enter password again">
+            <input type="password" th:field="*{passwordAgain}" class="form-control" placeholder="Enter password again">
         </div>
 
         <button type="submit" class="btn btn-success">Register</button>
