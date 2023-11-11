@@ -17,6 +17,8 @@ import persistence.type.RoleType;
 //import java.util.Collection;
 import java.util.*;
 
+import static persistence.type.RoleType.PERSONAL;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,7 +27,8 @@ import java.util.*;
 public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(name = "role_type", nullable = false)
-    private RoleType roleType;
+    private RoleType roleType = PERSONAL;
+
 
     @NotNull
     @Column(nullable = false)
@@ -44,7 +47,6 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
     private String passwordAgain;
 
     @Override

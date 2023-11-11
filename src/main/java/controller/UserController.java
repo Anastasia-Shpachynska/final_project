@@ -35,4 +35,10 @@ public class UserController {
         }
         return result;
     }
+    @GetMapping("/authorisation")
+    public String authorisation (Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "authorisation";
+    }
 }

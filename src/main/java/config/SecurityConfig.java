@@ -8,20 +8,21 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import repo.UserRepo;
 import service.UserService;
-import service.serviceImpl.UserServiceImpl;
 
 import javax.ws.rs.NotFoundException;
-import java.util.Optional;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
+    private UserRepo repo;
     private UserService userService;
    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -32,25 +33,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http
+                .csrf().disable()
+                .authorizeRequests()
                 .antMatchers("/public/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .usernameParameter("email")
+                .failureUrl("/login?error=true")
+                .permitAll().and().csrf().disable()
+                .logout()
                 .permitAll()
                 .and()
-                .logout()
-                .permitAll();
+                .csrf() // Enable CSRF protection
+                .and()
+                .exceptionHandling() // Handle access denied
+                .accessDeniedPage("/access-denied");
     }
 
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        return email -> userService.
-                isExist(email)
-                .orElseThrow(() -> new NotFoundException("User not found"));
-    }
+//    public UserDetails loadUserByUsername() {
+//        return email -> userService.
+//                isExist(email)
+//                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+//    }
 
 
     @Bean
