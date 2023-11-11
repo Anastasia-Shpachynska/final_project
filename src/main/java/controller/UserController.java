@@ -13,7 +13,7 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @GetMapping("/")
+    @GetMapping("/registration")
     public String register(Model model) {
         User user = new User();
         model.addAttribute("user", user);
