@@ -14,7 +14,7 @@ import java.util.Collection;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/open/products")
+@RequestMapping("/api/open/products")
 public class ProductsController {
 
     private final ProductFacade productFacade;

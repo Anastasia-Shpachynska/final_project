@@ -11,7 +11,7 @@ import service.UserServiceAuthentication;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/open/auth")
+@RequestMapping("/api/open/auth")
 public class AuthenticationController {
 
     private UserServiceAuthentication userServiceAuthentication;
