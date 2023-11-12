@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -15,8 +14,8 @@ import static persistence.type.PermissionType.*;
 @RequiredArgsConstructor
 public enum RoleType {
 
-    PERSONAL(Set.of(PERSONAL_CREATE, PERSONAL_UPDATE, PERSONAL_DELETE, PERSONAL_READ)),
-    ADMIN(Set.of(ADMIN_CREATE, ADMIN_UPDATE, ADMIN_DELETE, ADMIN_READ));
+    USER(Set.of(USER_READ));
+
 
     private final Set<PermissionType> permissions;
 
@@ -25,6 +24,7 @@ public enum RoleType {
                 .stream()
                 .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
                 .collect(Collectors.toList());
+
         authorities.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
         return authorities;
     }

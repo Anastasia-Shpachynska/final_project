@@ -1,0 +1,18 @@
+package persistence.type;
+
+import lombok.Getter;
+
+@Getter
+public enum AuthorType {
+
+    ROBERTMARTIN("Robert Martin"),
+    BRIANHALL("Brian Hall"),
+    ALANCOOPER("Alan Cooper"),
+    CHARLESPETZOLD("Charles Petzold");
+
+    private final String author;
+
+    AuthorType(String author) {
+        this.author = author;
+    }
+}

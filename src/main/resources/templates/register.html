@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en xmlns=" https://www.thymeleaf.org"">
+<html lang="en xmlns=" xmlns="https://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,7 @@
 <body>
 <div class="container">
 <h1 style="color: red;">User Registration Form</h1>
-    <form class="col-5" th:action="@{/registerUser}" th:object="${user}" method="post">
+    <form class="col-5" th:action="@{/register}" th:object="${user}" method="post">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"><b>Name</b></label>
             <input type="text" th:field="*{name}" class="form-control" placeholder="Enter name">
