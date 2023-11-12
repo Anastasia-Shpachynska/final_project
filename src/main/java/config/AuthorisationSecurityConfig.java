@@ -1,14 +1,10 @@
 package config;
 
-import com.mysql.cj.protocol.AuthenticationProvider;
-import controller.LoginController;
+import org.springframework.security.authentication.AuthenticationProvider;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -25,9 +21,6 @@ public class AuthorisationSecurityConfig {
     private  AuthenticationProvider authenticationProvider;
     private  AuthenticationFilter authenticationFilter;
 
-    @Autowired
-    private LoginController loginController;
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
@@ -35,16 +28,14 @@ public class AuthorisationSecurityConfig {
                 .csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/public/**"
+                        "/api/open/**"
                 ).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/loginUser")
-                .permitAll()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .logout()
-                .permitAll();
+                .authenticationProvider((AuthenticationProvider) authenticationProvider)
+                .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return  httpSecurity.build();
     }

@@ -1,35 +1,32 @@
 package entity.product;
 
 import entity.BaseEntity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.access.method.P;
 import persistence.type.AuthorType;
 
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "productsCategory")
+@Table(name = "products")
 public class Product extends BaseEntity {
 
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 4096)
     private String description;
 
     @Column(name = "pages_count", nullable = false)
-    private String pagesCount;
+    private int pagesCount;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "author_type", nullable = false)
-    private AuthorType authorType;
+    private AuthorType productAuthor;
 
     @ManyToMany
     @JoinTable(

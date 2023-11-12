@@ -15,7 +15,7 @@ import static persistence.type.PermissionType.*;
 public enum RoleType {
 
     USER(Set.of(USER_READ));
-
+//    USER_CREATE, USER_UPDATE, USER_DELETE));
 
     private final Set<PermissionType> permissions;
 

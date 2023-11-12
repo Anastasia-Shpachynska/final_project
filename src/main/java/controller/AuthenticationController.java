@@ -16,13 +16,13 @@ public class AuthenticationController {
 
     private UserServiceAuthentication userServiceAuthentication;
     @PostMapping("/register")
-    public ResponseEntity<ResponseData<AuthenticationData>> register(@ModelAttribute RegisterData data) {
+    public ResponseEntity<ResponseData<AuthenticationData>> register(@RequestBody RegisterData data) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new ResponseData<>(userServiceAuthentication.register(data)));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<ResponseData<AuthenticationData>> login(@ModelAttribute RegisterData data) throws Throwable {
+    public ResponseEntity<ResponseData<AuthenticationData>> login(@RequestBody RegisterData data) throws Throwable {
         return ResponseEntity.ok(new ResponseData<>(userServiceAuthentication.login(data)));
     }
 }
