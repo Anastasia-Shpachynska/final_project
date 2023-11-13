@@ -13,8 +13,8 @@ export class PlpService {
 
   loadProducts(): Observable<PlpData[]> {
     return this.http.get<ResponceData<PlpData[]>>('http://localhost:8080/api/open/products')
-        .pipe(
-            map(res => res.data)
-        );
+      .pipe(
+        map(res => res.data)
+      );
   }
 }

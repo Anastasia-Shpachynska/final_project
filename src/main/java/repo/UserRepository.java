@@ -1,6 +1,5 @@
 package repo;
 
-import entity.BaseEntity;
 import entity.User;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,6 @@
 package config.configImpl;
 
 import config.JwtService;
-import entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

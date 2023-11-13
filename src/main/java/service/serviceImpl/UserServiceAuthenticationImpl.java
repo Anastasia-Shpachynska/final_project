@@ -6,10 +6,6 @@ import data.responce.AuthenticationData;
 import entity.User;
 import exception.EntityNotFoundException;
 import exception.UserExistException;
-import io.jsonwebtoken.Claims;
-import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,9 +15,6 @@ import repo.TokenRepository;
 import repo.UserRepository;
 import service.UserServiceAuthentication;
 import token.Token;
-
-import java.util.Date;
-import java.util.List;
 
 @Service
 public class UserServiceAuthenticationImpl implements UserServiceAuthentication {

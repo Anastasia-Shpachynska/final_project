@@ -1,23 +1,29 @@
 import {Component, OnInit} from '@angular/core';
-import {AsyncPipe, CommonModule, NgIf} from '@angular/common';
-import {PlpService} from "../../services/plp.service";
-import {Observable} from "rxjs";
+import {AsyncPipe, JsonPipe} from '@angular/common';
 import {PlpData} from "../../models/responce/product/plp.data";
-
+import { Observable} from "rxjs";
+import {PlpService} from "../../services/plp.service";
 
 @Component({
   selector: 'app-plp',
   standalone: true,
-  imports: [CommonModule, NgIf, AsyncPipe],
   templateUrl: './plp.component.html',
+  imports: [
+    JsonPipe,
+    AsyncPipe
+  ],
   styleUrls: ['./plp.component.scss'],
+  providers: [PlpService]
 })
-export class PlpComponent implements OnInit{
+
+export class PlpComponent implements OnInit {
 
   products$: Observable<PlpData[]> = this.service
-      .loadProducts();
+    .loadProducts();
 
-  constructor(private service: PlpService) { }
+  constructor(private service: PlpService) {
+  }
 
   ngOnInit(): void {}
+
 }

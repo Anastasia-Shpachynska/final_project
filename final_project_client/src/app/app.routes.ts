@@ -1,4 +1,5 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
+
 
 export const APP_ROUTES: Routes = [
   {
@@ -12,3 +13,4 @@ export const APP_ROUTES: Routes = [
     loadChildren:() => import('./pages/plp/plp.routes').then(r => r.PLP_ROUTES)
   }
 ];
+
