@@ -1,1 +1,4 @@
-<p>plp works!</p>
+<ng-container *ngIf="products$ | async as products">
+    {{products | json}}
+</ng-container>
+
