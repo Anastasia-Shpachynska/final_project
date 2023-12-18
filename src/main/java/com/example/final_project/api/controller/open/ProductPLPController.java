@@ -1,6 +1,6 @@
 package com.example.final_project.api.controller.open;
 
-import com.example.final_project.api.data.responce.ProductPLPData;
+import com.example.final_project.api.data.responce.product.ProductPLPData;
 import com.example.final_project.api.data.responce.ResponseData;
 import com.example.final_project.facade.ProductPLPFacade;
 import lombok.RequiredArgsConstructor;

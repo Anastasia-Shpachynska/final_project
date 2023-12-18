@@ -1,4 +1,4 @@
-package com.example.final_project.api.data.responce;
+package com.example.final_project.api.data.responce.product;
 
 import com.example.final_project.persistence.entity.product.Product;
 import com.example.final_project.persistence.entity.product.ProductImage;

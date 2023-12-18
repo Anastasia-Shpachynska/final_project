@@ -1,6 +1,6 @@
 package com.example.final_project.facade.impl;
 
-import com.example.final_project.api.data.responce.ProductPLPData;
+import com.example.final_project.api.data.responce.product.ProductPLPData;
 import com.example.final_project.facade.ProductPLPFacade;
 import com.example.final_project.service.product.ProductService;
 import lombok.AllArgsConstructor;

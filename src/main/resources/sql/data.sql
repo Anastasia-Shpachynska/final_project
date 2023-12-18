@@ -28,6 +28,8 @@ insert into thumbnails values (3, 6);
 insert into thumbnails values (4, 7);
 
 insert into product_variant values (default, 'Українська', 300.00, 1);
+insert into product_variant values (default, 'Російська', 300.00, 1);
+insert into product_variant values (default, 'Англійська', 300.00, 1);
 insert into product_variant values (default, 'Російська', 150.00, 2);
 insert into product_variant values (default, 'Російська', 220.00, 3);
 insert into product_variant values (default, 'Англійська', 500.00, 4);
