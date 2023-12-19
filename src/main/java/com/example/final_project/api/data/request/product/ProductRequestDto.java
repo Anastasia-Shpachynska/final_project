@@ -8,7 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductRequestDto extends RequestDto {
-    private String name;
-    private String description;
+    private int pageCount;
     private AuthorType authorType;
 }

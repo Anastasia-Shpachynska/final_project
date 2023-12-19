@@ -9,14 +9,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductResponseDto extends ResponseDto {
-    private String name;
-    private String description;
+    private int pageCount;
     private AuthorType authorType;
 
     public ProductResponseDto(Product product) {
         super.setId(product.getId());
-        this.name = product.getName();
-        this.description = product.getDescription();
+        this.pageCount = product.getPagesCount();
         this.authorType = product.getProductAuthor();
     }
 }

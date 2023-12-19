@@ -1,7 +1,7 @@
 package com.example.final_project.api.data.responce.product;
 
-import com.example.final_project.persistence.entity.product.Product;
 import com.example.final_project.persistence.entity.product.ProductImage;
+import com.example.final_project.persistence.entity.product.ProductVariant;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.collections4.CollectionUtils;
@@ -17,13 +17,13 @@ public class ProductPLPData {
     private String author;
     private String name;
     private String image;
-//    private String price;
+    private String price;
 
-    public ProductPLPData(Product product) {
-        this.id = product.getId();
-        this.author = product.getProductAuthor().getAuthor();
-        this.name = product.getName();
-        Set<ProductImage> productImages = product.getProductImages();
+    public ProductPLPData(ProductVariant productVariant) {
+        this.id = productVariant.getId();
+        this.author = productVariant.getProduct().getProductAuthor().getAuthor();
+        this.name = productVariant.getName();
+        Set<ProductImage> productImages = productVariant.getProductImages();
         if(CollectionUtils.isNotEmpty(productImages)) {
             ProductImage productImage = productImages
                     .stream()
@@ -31,7 +31,7 @@ public class ProductPLPData {
                     .findFirst()
                     .orElse(new ArrayList<>(productImages).get(0));
             this.image = productImage.getImageUrl();
-//            this.price = String.valueOf(productVariant.getPrice());
+            this.price = String.valueOf(productVariant.getPrice());
         }
     }
 }

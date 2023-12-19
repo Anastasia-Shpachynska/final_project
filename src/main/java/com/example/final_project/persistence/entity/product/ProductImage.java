@@ -24,11 +24,11 @@ public class ProductImage extends BaseEntity {
     private Boolean mainImage;
 
     @ManyToMany(mappedBy = "productImages")
-    private Set<Product> products;
+    private Set<ProductVariant> productVariants;
 
     public ProductImage() {
         super();
-        this.products = new HashSet<>();
+        this.productVariants = new HashSet<>();
         this.mainImage = false;
     }
 }

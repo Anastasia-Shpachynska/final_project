@@ -20,8 +20,8 @@ public class ProductPDPFacadeImpl implements ProductPDPFacade {
 
     @Override
     public ProductPDPData findById(Long id) {
-        Product product = productService.findById(id);
-        Collection<ProductVariant> productVariants = productVariantService.findAllByProduct(product);
-        return new ProductPDPData(product, productVariants);
+        ProductVariant productVariant = productVariantService.findById(id);
+        Collection<ProductVariant> productVariants = productVariantService.findAllByProduct(productVariant.product);
+        return new ProductPDPData(productVariant, productVariants);
     }
 }
