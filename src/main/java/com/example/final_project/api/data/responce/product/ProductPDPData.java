@@ -1,5 +1,6 @@
 package com.example.final_project.api.data.responce.product;
 
+import com.example.final_project.persistence.entity.product.ProductGenre;
 import com.example.final_project.persistence.entity.product.ProductImage;
 import com.example.final_project.persistence.entity.product.ProductVariant;
 import com.example.final_project.persistence.type.GenreType;
@@ -41,7 +42,12 @@ public class ProductPDPData {
         }
         if(CollectionUtils.isNotEmpty(variants)) {
             this.languageList = variants.stream().map(ProductVariant::getLanguage).map(LanguageType::getLanguage).collect(Collectors.toSet());
-            this.genreNameList = variants.stream().map(ProductVariant::getProductGenres).flatMap(Set::stream).map(productGenre -> productGenre.getGenreName().getGenre()).collect(Collectors.toSet());
+        }
+        Set<ProductGenre> productGenres = variants.stream()
+                .flatMap(productVariant1 -> productVariant.getProductGenres().stream())
+                .collect(Collectors.toSet());
+        if(CollectionUtils.isNotEmpty(productGenres)) {
+            this.genreNameList = productGenres.stream().map(ProductGenre::getGenreName).map(GenreType::getGenre).collect(Collectors.toSet());
         }
     }
 }

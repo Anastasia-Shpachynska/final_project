@@ -2,7 +2,6 @@ package com.example.final_project.facade.impl;
 
 import com.example.final_project.api.data.responce.product.ProductPDPData;
 import com.example.final_project.facade.ProductPDPFacade;
-import com.example.final_project.persistence.entity.product.Product;
 import com.example.final_project.persistence.entity.product.ProductVariant;
 import com.example.final_project.service.product.ProductService;
 import com.example.final_project.service.product.ProductVariantService;
@@ -15,7 +14,6 @@ import java.util.Collection;
 @AllArgsConstructor
 public class ProductPDPFacadeImpl implements ProductPDPFacade {
 
-    private final ProductService productService;
     private final ProductVariantService productVariantService;
 
     @Override
