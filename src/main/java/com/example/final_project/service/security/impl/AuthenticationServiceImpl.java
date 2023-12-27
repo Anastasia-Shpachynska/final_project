@@ -2,6 +2,7 @@ package com.example.final_project.service.security.impl;
 
 import com.example.final_project.api.data.request.RegisterData;
 import com.example.final_project.api.data.responce.AuthenticationData;
+import com.example.final_project.config.processor.annotation.InjectLog;
 import com.example.final_project.config.security.JwtService;
 import com.example.final_project.exception.UserExistsException;
 import com.example.final_project.persistence.entity.token.Token;
@@ -9,6 +10,8 @@ import com.example.final_project.persistence.entity.user.Personal;
 import com.example.final_project.persistence.repository.token.TokenRepository;
 import com.example.final_project.persistence.repository.user.PersonalRepository;
 import com.example.final_project.persistence.type.TokenType;
+import com.example.final_project.service.logger.LoggerService;
+import com.example.final_project.service.logger.LoggingLevel;
 import com.example.final_project.service.security.AuthenticationService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,6 +28,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+
+    @InjectLog
+    private LoggerService loggerService;
 
     public AuthenticationServiceImpl(
             PersonalRepository personalRepository,
@@ -56,6 +62,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public AuthenticationData login(RegisterData data) {
+        loggerService.log(LoggingLevel.INFO, "User try login: " + data.getUsername());
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(data.getUsername(), data.getPassword())
         );
