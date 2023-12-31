@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum AuthorType {
 
     ROBERTMARTIN("Robert Martin"),
-    JOANEROWLING("Joanne Rowling"),
+    JOANNEROWLING("Joanne Rowling"),
     NAPOLEONGILL("Napoleon Gill");
 
 

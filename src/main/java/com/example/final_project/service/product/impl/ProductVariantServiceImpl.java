@@ -3,6 +3,8 @@ package com.example.final_project.service.product.impl;
 import com.example.final_project.persistence.entity.product.Product;
 import com.example.final_project.persistence.entity.product.ProductVariant;
 import com.example.final_project.persistence.repository.product.ProductVariantRepository;
+import com.example.final_project.persistence.type.AuthorType;
+import com.example.final_project.persistence.type.GenreType;
 import com.example.final_project.service.product.ProductVariantService;
 import com.example.final_project.util.ExceptionUtil;
 import jakarta.persistence.EntityNotFoundException;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 @Transactional
@@ -45,6 +48,10 @@ public class ProductVariantServiceImpl implements ProductVariantService {
     @Override
     public Collection<ProductVariant> findAllByProduct(Product product) {
         return productVariantRepository.findAllByProduct(product);
+    }
+
+    public Collection<ProductVariant> findAllByAuthor(AuthorType authorType) {
+        return productVariantRepository.findAllByProduct_ProductAuthor(authorType);
     }
 
     private void isValidId(Long id) {

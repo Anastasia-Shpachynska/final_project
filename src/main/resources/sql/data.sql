@@ -1,6 +1,6 @@
 insert into products values(1, 448, 'ROBERTMARTIN');
-insert into products values(2, 264, 'JOANEROWLING');
-insert into products values(3, 320, 'JOANEROWLING');
+insert into products values(2, 264, 'JOANNEROWLING');
+insert into products values(3, 320, 'JOANNEROWLING');
 insert into products values(4, 168, 'NAPOLEONGILL');
 
 
