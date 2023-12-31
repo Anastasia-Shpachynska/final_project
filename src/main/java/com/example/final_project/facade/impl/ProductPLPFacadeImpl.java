@@ -27,5 +27,8 @@ public class ProductPLPFacadeImpl implements ProductPLPFacade {
         return productVariantService.findAllByAuthor(author).stream().map(ProductPLPData::new).toList();
     }
 
-
+    @Override
+    public Collection<ProductPLPData> getProductsByProductGenre(String genre) {
+        return productVariantService.findAllByGenre(genre).stream().map(ProductPLPData::new).toList();
+    }
 }

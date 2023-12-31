@@ -1,7 +1,9 @@
 package com.example.final_project.service.product.impl;
 
 import com.example.final_project.persistence.entity.product.Product;
+import com.example.final_project.persistence.entity.product.ProductGenre;
 import com.example.final_project.persistence.entity.product.ProductVariant;
+import com.example.final_project.persistence.repository.product.ProductGenreRepository;
 import com.example.final_project.persistence.repository.product.ProductVariantRepository;
 import com.example.final_project.persistence.type.AuthorType;
 import com.example.final_project.persistence.type.GenreType;
@@ -21,6 +23,7 @@ import java.util.List;
 public class ProductVariantServiceImpl implements ProductVariantService {
 
     private ProductVariantRepository productVariantRepository;
+    private ProductGenreRepository productGenreRepository;
 
     @Override
     public void create(ProductVariant entity) {
@@ -52,6 +55,17 @@ public class ProductVariantServiceImpl implements ProductVariantService {
 
     public Collection<ProductVariant> findAllByAuthor(AuthorType authorType) {
         return productVariantRepository.findAllByProduct_ProductAuthor(authorType);
+    }
+
+    public Collection<ProductVariant> findAllByGenre(String genre) {
+        Collection<ProductVariant> productVariants = null;
+        Collection<ProductGenre> productGenres = productGenreRepository.findAll();
+        for (ProductGenre productGenre : productGenres) {
+            if(productGenre.getGenreName().getGenre().equals(genre)) {
+                productVariants = productVariantRepository.findAllByProductGenres(productGenre);
+            }
+        }
+        return productVariants;
     }
 
     private void isValidId(Long id) {

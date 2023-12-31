@@ -2,6 +2,7 @@ package com.example.final_project.persistence.repository.product;
 
 import com.example.final_project.persistence.dto.product.ProductVariantMinDto;
 import com.example.final_project.persistence.entity.product.Product;
+import com.example.final_project.persistence.entity.product.ProductGenre;
 import com.example.final_project.persistence.entity.product.ProductVariant;
 import com.example.final_project.persistence.repository.BaseRepository;
 import com.example.final_project.persistence.type.AuthorType;
@@ -20,4 +21,6 @@ public interface ProductVariantRepository extends BaseRepository<ProductVariant>
     Collection<ProductVariantMinDto> findAllProductVariantMinDtoList();
 
     Collection<ProductVariant> findAllByProduct_ProductAuthor(AuthorType author);
+
+    Collection<ProductVariant> findAllByProductGenres(ProductGenre productGenre);
 }

@@ -11,4 +11,5 @@ public interface ProductVariantService extends CRUDService<ProductVariant> {
     Collection<ProductVariant> findAllByProduct(Product product);
     Collection<ProductVariant> findAllByAuthor(AuthorType authorType);
 
+    Collection<ProductVariant> findAllByGenre(String genre);
 }
