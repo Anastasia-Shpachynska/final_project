@@ -7,6 +7,7 @@ import com.example.final_project.persistence.repository.product.ProductGenreRepo
 import com.example.final_project.persistence.repository.product.ProductVariantRepository;
 import com.example.final_project.persistence.type.AuthorType;
 import com.example.final_project.persistence.type.GenreType;
+import com.example.final_project.persistence.type.LanguageType;
 import com.example.final_project.service.product.ProductVariantService;
 import com.example.final_project.util.ExceptionUtil;
 import jakarta.persistence.EntityNotFoundException;
@@ -14,8 +15,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -66,6 +66,21 @@ public class ProductVariantServiceImpl implements ProductVariantService {
             }
         }
         return productVariants;
+    }
+
+    public ProductVariant findByIdAndLanguage(Long id, String language) {
+        Collection<ProductVariant> productVariants = findAll();
+        Set<LanguageType> languageTypeSet = new HashSet<>();
+        ProductVariant product = null;
+        for (ProductVariant productVariant : productVariants) {
+            languageTypeSet.addAll(Collections.singleton(productVariant.getLanguage()));
+        }
+        for (LanguageType languageType : languageTypeSet) {
+            if(languageType.getLanguage().equals(language)) {
+                product = productVariantRepository.findProductVariantWhereProductIdAndLanguage(id, languageType);
+            }
+        }
+        return product;
     }
 
     private void isValidId(Long id) {

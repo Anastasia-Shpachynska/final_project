@@ -7,7 +7,9 @@ import com.example.final_project.persistence.entity.product.ProductVariant;
 import com.example.final_project.persistence.repository.BaseRepository;
 import com.example.final_project.persistence.type.AuthorType;
 import com.example.final_project.persistence.type.GenreType;
+import com.example.final_project.persistence.type.LanguageType;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -23,4 +25,7 @@ public interface ProductVariantRepository extends BaseRepository<ProductVariant>
     Collection<ProductVariant> findAllByProduct_ProductAuthor(AuthorType author);
 
     Collection<ProductVariant> findAllByProductGenres(ProductGenre productGenre);
+
+    @Query("SELECT pv FROM ProductVariant pv WHERE pv.product.id = :id AND pv.language = :language")
+    ProductVariant findProductVariantWhereProductIdAndLanguage(@Param("id") Long id, @Param("language") LanguageType language);
 }

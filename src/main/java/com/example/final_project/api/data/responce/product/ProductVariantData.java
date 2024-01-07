@@ -15,8 +15,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
-public class ProductPDPData {
-
+public class ProductVariantData {
     private Long id;
     private String name;
     private String productAuthor;
@@ -24,12 +23,11 @@ public class ProductPDPData {
     private String pagesCount;
     private String year;
     private String price;
+    private String language;
     private Set<String> images;
-    private Set<String> languageList;
     private Set<String> genreNameList;
-    private Long idProduct;
 
-    public ProductPDPData(ProductVariant productVariant, Collection<ProductVariant> variants) {
+    public ProductVariantData(ProductVariant productVariant, Collection<ProductVariant> variants) {
         this.id = productVariant.getId();
         this.productAuthor = productVariant.getProduct().getProductAuthor().getAuthor();
         this.pagesCount = String.valueOf(productVariant.getProduct().getPagesCount());
@@ -37,13 +35,10 @@ public class ProductPDPData {
         this.year = String.valueOf(productVariant.getYear());
         this.description = productVariant.getDescription();
         this.price = String.valueOf(productVariant.getPrice());
-        this.idProduct = productVariant.getProduct().getId();
+        this.language = productVariant.getLanguage().getLanguage();
         Set<ProductImage> productImages = productVariant.getProductImages();
         if(CollectionUtils.isNotEmpty(productImages)) {
             this.images = productImages.stream().map(ProductImage::getImageUrl).collect(Collectors.toSet());
-        }
-        if(CollectionUtils.isNotEmpty(variants)) {
-            this.languageList = variants.stream().map(ProductVariant::getLanguage).map(LanguageType::getLanguage).collect(Collectors.toSet());
         }
         Set<ProductGenre> productGenres = variants.stream()
                 .flatMap(productVariant1 -> productVariant.getProductGenres().stream())
