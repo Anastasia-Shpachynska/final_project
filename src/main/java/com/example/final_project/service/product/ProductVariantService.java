@@ -1,5 +1,6 @@
 package com.example.final_project.service.product;
 
+import com.example.final_project.api.data.responce.product.ProductVariantData;
 import com.example.final_project.persistence.entity.product.Product;
 import com.example.final_project.persistence.entity.product.ProductVariant;
 import com.example.final_project.persistence.type.AuthorType;

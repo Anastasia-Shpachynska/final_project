@@ -35,7 +35,7 @@ public class AuthorizationSecurityConfig {
                         "/api/private/admin/**"
                 ).hasRole(RoleType.ADMIN.name())
                 .requestMatchers(
-                        "api/private/personal/**"
+                        "/api/private/personal/**"
                 ).hasRole(RoleType.PERSONAL.name())
                 .anyRequest().authenticated()
                 .and()

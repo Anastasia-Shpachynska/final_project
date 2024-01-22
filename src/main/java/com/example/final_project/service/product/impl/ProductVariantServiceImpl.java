@@ -1,5 +1,7 @@
 package com.example.final_project.service.product.impl;
 
+import com.example.final_project.api.data.responce.product.ProductPDPData;
+import com.example.final_project.api.data.responce.product.ProductVariantData;
 import com.example.final_project.persistence.entity.product.Product;
 import com.example.final_project.persistence.entity.product.ProductGenre;
 import com.example.final_project.persistence.entity.product.ProductVariant;

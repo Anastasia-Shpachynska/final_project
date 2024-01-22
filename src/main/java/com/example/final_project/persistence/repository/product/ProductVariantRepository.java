@@ -28,4 +28,6 @@ public interface ProductVariantRepository extends BaseRepository<ProductVariant>
 
     @Query("SELECT pv FROM ProductVariant pv WHERE pv.product.id = :id AND pv.language = :language")
     ProductVariant findProductVariantWhereProductIdAndLanguage(@Param("id") Long id, @Param("language") LanguageType language);
+
+    ProductVariant findProductVariantById(Long id);
 }

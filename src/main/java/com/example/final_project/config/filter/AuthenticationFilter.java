@@ -26,6 +26,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
     private final TokenRepository tokenRepository;
+    public static String CURRENT_USER = "";
 
     @Override
     protected void doFilterInternal(
@@ -43,6 +44,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         }
         String jwt = authorization.substring(7);
         String username = jwtService.extractUsername(jwt);
+        CURRENT_USER = username;
         if(username != null && SecurityUtil.getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             Token token = tokenRepository
