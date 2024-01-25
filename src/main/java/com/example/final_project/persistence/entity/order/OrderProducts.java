@@ -1,8 +1,9 @@
-package com.example.final_project.persistence.entity.cart;
+package com.example.final_project.persistence.entity.order;
 
 import com.example.final_project.persistence.entity.BaseEntity;
 import com.example.final_project.persistence.entity.product.ProductVariant;
 import com.example.final_project.persistence.entity.user.User;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -10,27 +11,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table
-@Setter
 @Getter
-public class Cart extends BaseEntity {
+@Setter
+@Table
+public class OrderProducts extends BaseEntity {
+    @ManyToOne
+    private User user;
 
     @ManyToOne
     private ProductVariant productVariant;
 
-    @ManyToOne
-    private User user;
-
+    @Column(nullable = false)
     private int count;
-
-    public Cart(ProductVariant productVariant, User user) {
-        super();
-        this.productVariant = productVariant;
-        this.user = user;
-        this.count = 1;
-    }
-
-    public Cart() {
-
-    }
 }

@@ -1,4 +1,4 @@
-package com.example.final_project.api.data.responce.product;
+package com.example.final_project.api.data.responce.cart;
 
 import com.example.final_project.persistence.entity.cart.Cart;
 import com.example.final_project.persistence.entity.product.ProductGenre;
@@ -24,8 +24,13 @@ public class CartData {
     private String language;
     private Set<String> images;
     private Set<String> genreNameList;
+    private int count;
     private Long userId;
     private String username;
+
+    public CartData() {
+        // Порожній конструктор за замовчуванням
+    }
 
     public CartData(Cart cart) {
         this.id = cart.getProductVariant().getId();
@@ -38,6 +43,7 @@ public class CartData {
         this.language = cart.getProductVariant().getLanguage().getLanguage();
         this.userId = cart.getUser().getId();
         this.username = cart.getUser().getUsername();
+        this.count = cart.getCount();
         Set<ProductImage> productImages = cart.getProductVariant().getProductImages();
         if(CollectionUtils.isNotEmpty(productImages)) {
             this.images = productImages.stream().map(ProductImage::getImageUrl).collect(Collectors.toSet());
