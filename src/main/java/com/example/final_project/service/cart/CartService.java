@@ -11,4 +11,5 @@ public interface CartService extends CRUDService<Cart> {
     Cart addToCart(Long productId);
     Collection<Cart> getCartDetails();
     void orderAdd(OrderData data);
+    void removeOne(Long productId);
 }

@@ -4,6 +4,7 @@ import com.example.final_project.api.data.responce.ResponseData;
 import com.example.final_project.api.data.responce.cart.CartData;
 import com.example.final_project.api.data.responce.order.OrderData;
 import com.example.final_project.facade.CartFacade;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,5 +31,11 @@ public class CartController {
     @PostMapping({"/order"})
     public void addToOrder(@RequestBody OrderData data) {
         cartFacade.orderAdd(data);
+    }
+
+    @Transactional
+    @DeleteMapping({"/deleteElement/{id}"})
+    public void removeOne(@PathVariable Long id) {
+        cartFacade.removeOne(id);
     }
 }

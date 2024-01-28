@@ -9,4 +9,5 @@ public interface CartFacade {
     CartData addToCart(Long productId);
     Collection<CartData> getCartDetails();
     void orderAdd(OrderData data);
+    void removeOne(Long productId);
 }

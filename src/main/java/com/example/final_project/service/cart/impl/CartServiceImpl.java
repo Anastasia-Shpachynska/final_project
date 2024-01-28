@@ -14,6 +14,7 @@ import com.example.final_project.persistence.repository.order.OrderProductsRepos
 import com.example.final_project.persistence.repository.product.ProductVariantRepository;
 import com.example.final_project.persistence.repository.user.PersonalRepository;
 import com.example.final_project.service.cart.CartService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -82,6 +83,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    @Transactional
     public void orderAdd(OrderData data) {
         List<OrderProducts> orderProductsList = new ArrayList<>();
 
@@ -114,6 +116,18 @@ public class CartServiceImpl implements CartService {
             orderDetails.setStatus(false);
 
             orderDetailsRepository.save(orderDetails);
+        }
+
+        cartRepository.cleanCart(orderProductsList.get(0).getUser().getId());
+    }
+
+    @Override
+    public void removeOne(Long productId) {
+        String username = AuthenticationFilter.CURRENT_USER;
+        User user = (User) personalRepository.findByUsername(username).orElse(null);
+        Long userId = user.getId();
+        if(userId != null) {
+            cartRepository.deleteCartByUserIdAndProductVariantId(userId, productId);
         }
     }
 }

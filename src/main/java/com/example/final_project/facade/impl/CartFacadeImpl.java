@@ -29,4 +29,9 @@ public class CartFacadeImpl implements CartFacade {
     public void orderAdd(OrderData data) {
         cartService.orderAdd(data);
     }
+
+    @Override
+    public void removeOne(Long productId) {
+        cartService.removeOne(productId);
+    }
 }
