@@ -48,12 +48,38 @@ public class WishlistServiceImpl implements WishlistService {
         ProductVariant productVariant = productVariantRepository.findProductVariantById(productId);
         String username = AuthenticationFilter.CURRENT_USER;
         User user = personalRepository.findByUsername(username).orElse(null);
+
+        Collection<Wishlist> wishlistCollection = getWishlist();
+        for (Wishlist wishlist1 : wishlistCollection) {
+            if(wishlist1.getProductVariant().getId().equals(productId)) {
+                return null;
+            }
+        }
         if(user != null && productVariant != null) {
-            Wishlist wishlist = new Wishlist();
-            wishlist.setUser(user);
-            wishlist.setProductVariant(productVariant);
+            Wishlist wishlist = new Wishlist(user, productVariant);
             return wishlistRepository.save(wishlist);
         }
         return null;
+    }
+
+    @Override
+    public Collection<Wishlist> getWishlist() {
+        String username = AuthenticationFilter.CURRENT_USER;
+        User user = personalRepository.findByUsername(username).orElse(null);
+        if(user != null) {
+            return wishlistRepository.findAllByUser(user);
+        }
+        return null;
+    }
+
+    @Override
+    @Transactional
+    public void removeProduct(Long id) {
+        String username = AuthenticationFilter.CURRENT_USER;
+        User user = personalRepository.findByUsername(username).orElse(null);
+        ProductVariant productVariant = productVariantRepository.findById(id).orElse(null);
+        if(user != null && productVariant != null) {
+            wishlistRepository.deleteWishlistByUserAndProductVariant(user, productVariant);
+        }
     }
 }

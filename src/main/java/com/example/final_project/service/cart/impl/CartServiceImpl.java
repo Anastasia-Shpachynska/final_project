@@ -79,7 +79,10 @@ public class CartServiceImpl implements CartService {
     public Collection<Cart> getCartDetails() {
         String username = AuthenticationFilter.CURRENT_USER;
         User user = (User) personalRepository.findByUsername(username).orElse(null);
-        return cartRepository.findAllByUserId(user.getId());
+        if(user != null) {
+            return cartRepository.findAllByUserId(user.getId());
+        }
+        return null;
     }
 
     @Override
