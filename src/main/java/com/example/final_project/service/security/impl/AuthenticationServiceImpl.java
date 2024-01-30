@@ -9,6 +9,7 @@ import com.example.final_project.persistence.entity.token.Token;
 import com.example.final_project.persistence.entity.user.Personal;
 import com.example.final_project.persistence.repository.token.TokenRepository;
 import com.example.final_project.persistence.repository.user.PersonalRepository;
+import com.example.final_project.persistence.type.RoleType;
 import com.example.final_project.persistence.type.TokenType;
 import com.example.final_project.service.logger.LoggerService;
 import com.example.final_project.service.logger.LoggingLevel;
@@ -57,7 +58,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         personalRepository.save(personal);
         String token = jwtService.generateToken(personal);
         saveToken(token, personal);
-        return new AuthenticationData(token);
+        RoleType roleType = personal.getRoleType();
+        return new AuthenticationData(token, roleType);
     }
 
     @Override
@@ -76,7 +78,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             accessToken = jwtService.generateToken(personal);
             saveToken(accessToken, personal);
         }
-        return new AuthenticationData(accessToken);
+        RoleType roleType = personal.getRoleType();
+        return new AuthenticationData(accessToken, roleType);
     }
 
     private void saveToken(String accessToken, Personal personal) {

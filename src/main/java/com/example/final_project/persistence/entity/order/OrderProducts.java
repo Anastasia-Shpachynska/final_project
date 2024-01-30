@@ -23,4 +23,7 @@ public class OrderProducts extends BaseEntity {
 
     @Column(nullable = false)
     private int count;
+
+    @Column(nullable = false)
+    private boolean status;
 }

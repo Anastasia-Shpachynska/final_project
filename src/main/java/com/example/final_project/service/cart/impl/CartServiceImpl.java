@@ -100,6 +100,7 @@ public class CartServiceImpl implements CartService {
                 orderProducts.setUser(user);
                 orderProducts.setProductVariant(productVariant);
                 orderProducts.setCount(cartDatum.getCount());
+                orderProducts.setStatus(false);
 
                 orderProductsList.add(orderProducts);
             }
